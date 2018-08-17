@@ -11,17 +11,19 @@ var Star = class {
 		this.sprite = game.add.sprite(getRandomInt(0, window.innerWidth), getRandomInt(0, window.innerHeight),["star1", "star2", "star3"][getRandomInt(0,3)]);
 		this.dir = direction;
 		this.start = start;
-		this.speed = getRandomInt(1,4);
+		this.speed = getRandomInt(10,40)/10;
 		this.alpha = getRandomInt(0,101);
 		this.dalpha = (-0.5/3)*this.speed;
+		this.sprite.scale.setTo(0.25*this.speed, 0.25*this.speed)
 	}
 	update() {
 		if (this.sprite.x <= -20) this.respawn();
 		this.sprite.x += this.dir*this.speed;
-		this.alpha+=this.dalpha;
-		this.sprite.alpha = this.alpha/100;
 		if (this.alpha >= 33*this.speed) this.dalpha = (-0.5/3)*this.speed;
 		else if (this.alpha <= 1) this.dalpha = (0.5/3)*this.speed;
+		if (this.alpha > 100) this.alpha = 99, this.dalpha = (-0.5/3)*this.speed;
+		this.alpha+=this.dalpha;
+		this.sprite.alpha = this.alpha/100;
 	}
 	respawn() {
 		this.sprite.y = getRandomInt(0,window.innerHeight);
