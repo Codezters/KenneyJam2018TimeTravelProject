@@ -34,15 +34,17 @@ var Star = class {
 var menuState = {
 	preload: function() {
 		//load all png files
+		 game.load.audio('theaudio', ['assets/music.mp3', 'assets/music.ogg']);
 		for (let i in imageLoad) {
 			game.load.image(imageLoad[i].replace(".png", ""), "./assets/"+imageLoad[i]);
 		}
 	},
-	
+	var music;
 	create: function() {
 		try {
 			game.stage.backgroundColor = "#000";
-			
+			music = game.add.audio('theaudio');
+			music.play();
 			//create stars
 			for (let i = 0;i<80;i++) {
 				globals.stars.push(new Star(-1, window.innerWidth));
