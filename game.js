@@ -39,11 +39,10 @@ var menuState = {
 			game.load.image(imageLoad[i].replace(".png", ""), "./assets/"+imageLoad[i]);
 		}
 	},
-	var music;
 	create: function() {
 		try {
 			game.stage.backgroundColor = "#000";
-			music = game.add.audio('theaudio');
+			var music = game.add.audio('theaudio');
 			music.play();
 			//create stars
 			for (let i = 0;i<80;i++) {
